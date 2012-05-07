@@ -1,14 +1,25 @@
 package com.github.lila;
 
 /**
- * Interface to define a Object/POJO/Bean that have a permission.
- *
+ * A common interface to define a class (usually, a User) that have permissions.
+ * 
  * @author Carlos A Becker
- *
+ * 
  */
 public interface HasPermission {
 
-    void setPermission(int permission);
+	/**
+	 * Get the permission from the object.
+	 * 
+	 * @return
+	 */
+	int getPermission();
 
-    int getPermission();
+	/**
+	 * Set a new permission for the object.
+	 * 
+	 * @param permission
+	 */
+	void setPermission(int permission);
+
 }

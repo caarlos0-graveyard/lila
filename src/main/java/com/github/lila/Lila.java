@@ -1,8 +1,5 @@
 package com.github.lila;
 
-import java.util.Arrays;
-import java.util.List;
-
 /**
  * Class that will add, remove and verify Permissions.
  * 
@@ -12,97 +9,48 @@ import java.util.List;
 public class Lila {
 
 	/**
-	 * Add a permission code to the object.
+	 * Add the <code>newPermission</code> Permission to the
+	 * <code>atualPermission</code> and return the updated value.
 	 * 
-	 * @param HasPermission
-	 *            object
-	 * @param int permission
+	 * @param atualPermission
+	 *            : The atual permission of your object.
+	 * @param newPermission
+	 *            : The permission you want to add.
+	 * @return the int number representing the new permission value of your
+	 *         object.
 	 */
-	public void addPermission(HasPermission object, Permission permission) {
-		object.setPermission(object.getPermission() | permission.get());
+	public int addPermission(int atualPermission, int newPermission) {
+		return atualPermission | newPermission;
 	}
 
 	/**
-	 * Adds a array of permissions to the object.
+	 * Remove <code>permissionToRemove</code> Permission from the
+	 * <code>atualPermission</code> and return the updated value.
 	 * 
-	 * @param object
+	 * @param atualPermission
+	 *            : The atual permission of your object.
+	 * @param permissionToRemove
+	 *            : The permission you want to remove from it.
+	 * @return the int number representing the new permission value of your
+	 *         object.
+	 */
+	public int removePermission(int atualPermission, int permissionToRemove) {
+		return atualPermission & ~permissionToRemove;
+	}
+
+	/**
+	 * Verify if your <code>atualPermission</code> has the
+	 * <code>permission</code>.
+	 * 
+	 * @param atualPermission
+	 *            : The atual permission of your object.
 	 * @param permission
+	 *            : The permission you want to verify.
+	 * @return true if it has the object, false otherwise.
 	 */
-	public void addPermission(HasPermission object, Permission... permission) {
-		addPermission(object, Arrays.asList(permission));
+	public boolean containsPermission(int atualPermission, int permission) {
+		int atual = atualPermission;
+		return (atual &= permission) == permission;
 	}
 
-	/**
-	 * Adds a list of permissions to the object.
-	 * 
-	 * @param object
-	 * @param permission
-	 */
-	public void addPermission(HasPermission object, List<Permission> permission) {
-		for (Permission i : permission) {
-			addPermission(object, i);
-		}
-	}
-
-	/**
-	 * Remove the permission code from object.
-	 * 
-	 * @param object
-	 * @param permission
-	 */
-	public void removePermission(HasPermission object, Permission permission) {
-		object.setPermission(object.getPermission() & ~permission.get());
-	}
-
-	public void removePermission(HasPermission object, Permission... permission) {
-		removePermission(object, Arrays.asList(permission));
-	}
-
-	public void removePermission(HasPermission object,
-			List<Permission> permission) {
-		for (Permission i : permission) {
-			removePermission(object, i);
-		}
-	}
-
-	/**
-	 * Check if object's permissions contains the permission.
-	 * 
-	 * @param object
-	 * @param permission
-	 * @return
-	 */
-	public boolean hasPermission(HasPermission object, Permission permission) {
-		int permission_copy = object.getPermission();
-		return (permission_copy &= permission.get()) == permission.get();
-	}
-
-	/**
-	 * Verify a array of permissions into the object.
-	 * 
-	 * @param object
-	 * @param permissions
-	 * @return true if the object permissions has all the permissions.
-	 */
-	public boolean hasPermissions(HasPermission object,
-			Permission... permissions) {
-		return hasPermissions(object, Arrays.asList(permissions));
-	}
-
-	/**
-	 * Verify a list of permissions in the object.
-	 * 
-	 * @param object
-	 * @param permissions
-	 * @return true if the object permissions has all the permissions.
-	 */
-	public boolean hasPermissions(HasPermission object,
-			List<Permission> permissions) {
-		for (Permission p : permissions) {
-			if (!hasPermission(object, p)) {
-				return false;
-			}
-		}
-		return true;
-	}
 }
