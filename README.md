@@ -1,7 +1,7 @@
 Lila
 ====
 
-![Lila](http://02.twitpicproxy.com/photos/full/574935072.jpg)
+![Lila](http://s1-02.twitpicproxy.com/photos/full/574935072.jpg)
 
 "Lila doesn't like people who try to do things they supposed couldn't do."
 
